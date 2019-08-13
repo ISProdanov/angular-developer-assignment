@@ -1,0 +1,32 @@
+<div class="app">
+    <header class="app__header">
+        <h1 class="app__header-title">{{ title }}</h1>
+    </header><!-- /.app__header -->
+
+    <div class="container">
+        <aside class="aside">
+            <nav class="nav">
+                <ul>
+                    <li>
+                        <a routerLink="/users">
+                            <i class="fas fa-users"></i>
+
+                            Users
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/new-user">
+                            <i class="fas fa-user-plus"></i>
+          
+                            Add User
+                        </a>
+                    </li>
+                </ul>
+            </nav><!-- /.nav -->
+        </aside><!-- /.aside -->
+                
+        <div class="app__content">
+            <router-outlet></router-outlet>
+        </div><!-- /.app__content -->
+    </div><!-- /.container -->
+</div><!-- /.app -->

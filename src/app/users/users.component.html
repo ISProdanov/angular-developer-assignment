@@ -1,0 +1,81 @@
+<section class="section">
+  <h2 class="section__title">Users List</h2><!-- /.section__title -->
+
+<div class="section__content">
+    <div class="users-table">
+        <div class="table__actions ">
+          <input
+            [(ngModel)]="searchTerm"
+            id="search"
+            type="text"
+            name="searchTerm"
+            placeholder="Search User"
+            class="field">
+        </div><!-- /.table__actions -->
+
+        <table>
+          <thead>
+            <tr>
+                <th scope="col">
+                  <p>First Name</p>
+                </th>
+
+                <th scope="col">
+                  <p>Last Name</p>
+                </th>
+
+                <th scope="col" colspan="2">
+                  <p>Email</p>
+                </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let user of (users | filter:searchTerm)" class="user">
+              <td data-label="First Name">
+                <p>{{ user.firstName }}</p>
+              </td>
+
+              <td data-label="Last Name">
+                <p>{{ user.lastName }}</p>
+              </td>
+        
+              <td data-label="Email">
+                <p>{{ user.email }}</p>
+              </td>
+
+              <td class="user__actions">
+                  <button
+                    *ngIf="!user.confirmDelete"
+                    routerLink="/users/{{user.id}}"
+                    class="btn btn--outline btn--round btn--warning">
+                      <i class="fas fa-user-edit"></i>
+                  </button>
+
+                  <div
+                    *ngIf="user.confirmDelete"
+                    class="user__actions-alerts">
+                      <p>Are you sure?</p>
+
+                      <button
+                        (click)="deleteUser(user)"
+                        class="btn btn--danger">Yes</button>
+
+                      <button
+                        (click)="user.confirmDelete=false"
+                        class="btn btn--success">No</button>
+                  </div><!-- /user__actions-alerts -->
+                  
+                  <button
+                    *ngIf="!user.confirmDelete"
+                    (click)="user.confirmDelete=true"
+                    class="btn btn--outline btn--round btn--danger">
+                      <i class="fas fa-user-times"></i>
+                  </button>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div><!-- /.users-table -->
+  </div><!-- /.section__content -->
+</section><!-- /.section -->

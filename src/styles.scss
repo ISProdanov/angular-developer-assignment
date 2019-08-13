@@ -1,0 +1,292 @@
+/*
+    Initial SCSS Reset
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+}
+
+div,article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+    overflow: auto;
+  }
+
+/*
+    Fonts
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,600|Roboto:400,500&display=swap');
+
+/*
+    Main Settings
+*/
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: rgba($color: #fff, $alpha: .8);
+    line-height: 1.5;
+}
+
+a {
+    color: #53d769;
+    text-decoration: none
+}
+
+h1 {
+    font-size: 32px;
+}
+
+
+h2 {
+    font-size: 28px;
+}
+
+
+h3 {
+    font-size: 24px;
+}
+
+
+h4 {
+    font-size: 20px;
+}
+
+
+h5 {
+    font-size: 18px;
+}
+
+
+h6 {
+    font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.section {
+    height: 100%;
+    padding: 35px;
+    
+    .section__title {
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    .section__content {
+        padding: 15px;
+        border-radius: 5px;
+        background-color: rgba($color: #000, $alpha: .45);   
+    }
+
+    
+    // Mobile devices
+    @media screen and (max-width: 768px) {
+        padding: 15px;
+    }
+}
+
+/*
+    Buttons
+*/
+
+.btn {
+    font-size: 16px;
+    font-family: inherit;
+    color: inherit;
+    line-height: 1.2;
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+   
+    &:disabled {
+        background-color: #c6c6c6;
+        border-color: #c6c6c6; 
+    }
+
+    &--primary {
+        background-color: #1c7efb;
+        border-color: #1c7efb;
+    }
+    
+    &--danger {
+        background-color: #f35857;
+        border-color: #f35857;
+    }
+
+    &--warning {
+        background-color: #ffd769;
+        border-color: #ffd769;
+    }
+
+    &--success {
+        background-color: #52d669;
+        border-color: #52d669;
+    }
+
+    &--round {
+        border-radius: 50px;
+    }
+
+    &--outline {
+        background-color: transparent;
+
+        &.btn--primary {
+            color: #1c7efb;
+        }
+        
+        &.btn--danger {
+            color: #f35857;
+        }
+    
+        &.btn--warning {
+            color: #ffd769;
+        }
+    
+        &.btn--success {
+            color: #52d669;
+        }
+    } 
+}
+
+/*
+    Form
+*/
+
+.form {
+    font-size: 16px;
+    
+    label {
+        display: block;
+        margin-bottom: 0px;
+    }
+
+    .form__head {
+        margin-bottom: 20px;
+    }
+    
+    .form__row {
+        & + .form__row {
+            margin-top: 10px;
+        }
+    }
+
+    .form__actions {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .form__btn {
+        & + .form__btn {
+            margin-left: 15px;
+        }
+    }
+}
+
+/*
+    Form elements
+*/ 
+
+.field {
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: rgba($color: #000, $alpha: .45);
+    border: 1px solid rgba($color: #000, $alpha: .45);
+    border-radius: 5px;
+    outline: none;
+    padding: 10px;
+    position: relative;
+    transition: border-color .3s,color .3s;
+
+    ::placeholder {
+        color: rgba($color: #fff, $alpha: .45);
+        transition: color .3s;
+    }
+       
+    &:focus,
+    &:hover {
+        color: rgba($color: #000, $alpha: .80);
+        border-color:  rgba($color: #000, $alpha: .80);
+
+        &::placeholder {
+            color: inherit;
+        }
+    }
+
+    &.is-invalid {
+        border-color: #f35857;
+    }
+}
+
+
+/*
+    Helpers
+*/
+
+.hidden {
+    display: none;
+}
+
+.cols {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.col {
+    flex: 1;
+
+    // col--2of4
+    &--2of4 {
+        flex: 1 0 50%;
+        max-width: 50%;
+    }
+
+    &--1of3 {
+        flex: 1 0 33.33%;
+        max-width: 33.33%;
+    }
+
+    &--2of3 {
+        flex: 1 0 66.66%;
+        max-width: 66.66%;
+    }
+}

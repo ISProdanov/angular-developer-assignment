@@ -1,0 +1,90 @@
+<section *ngIf="user" class="section">
+  
+  <div class="section__content">
+    <div  class="form">
+      <form [formGroup]="profileForm" (ngSubmit)="saveUser(); profileForm.reset()">
+        <div class="form__head">
+          <h2 class="form__title">
+              <i class="fas fa-user-edit"></i>
+
+              {{ user.firstName + " " + user.lastName }}
+          </h2><!-- /.form__title -->
+        </div><!-- /.form__head -->
+        
+        <div class="form__body">
+          <div class="form__row">
+              <label for="name1">Name:</label>
+
+              <div class="form__controls">
+                  <input
+                    formControlName="firstName"
+                    type="text"
+                    name="firstName"
+                    id="firstName"
+                    class="field"
+                    required/>    
+
+                    <div class="form__alerts">
+                        <span
+                            [class.hidden]="profileForm.get('firstName').valid || profileForm.get('firstName').untouched"
+                            class="form__alert form__alert--danger">First Name is required!</span>
+                    </div><!-- /.form__alerts -->
+              </div><!-- /.form__controls -->
+          </div><!-- /.form__row -->
+          
+          <div class="form__row">
+            <label for="lastName">Last Name:</label>
+            
+            <div class="form__controls">
+                <input
+                  formControlName="lastName"
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  class="field" />    
+            </div><!-- /.form__controls -->
+          </div><!-- /.form__row -->
+
+          <div class="form__row">
+              <label for="email">Email:</label>
+              
+              <div class="form__controls">
+                  <input
+                    formControlName="email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    class="field" 
+                    pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    required/>   
+                    
+                    <div
+                    *ngIf="profileForm.get('email').invalid && profileForm.get('email').touched"
+                    class="form__alerts">
+                    
+                    <span
+                        *ngIf="profileForm.get('email').errors?.required"
+                        class="form__alert form__alert--danger">Email is required!</span>
+
+                    <span
+                        *ngIf="profileForm.get('email').errors?.pattern"
+                        class="form__alert form__alert--danger">The Email must be of type: email@email.domain!</span>
+                </div><!-- /.form__alerts -->
+              </div><!-- /.form__controls -->
+            </div><!-- /.form__row -->
+          </div><!-- /.form__body -->
+
+          <div class="form__actions">
+            <button
+              [disabled]="profileForm.invalid || profileForm.pristine"
+              type="submit"
+              class="form__btn btn btn--success">Apply</button>
+
+            <button
+              (click)="cancel()"
+              class="form__btn btn btn--danger">Cancel</button>
+          </div><!-- /.form__actions -->
+        </form>
+    </div><!-- /.form -->
+  </div><!-- /.section__content -->
+</section><!-- /.section -->
